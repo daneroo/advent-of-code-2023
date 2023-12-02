@@ -1,5 +1,15 @@
 # ts-aoc-starter
 
+## Instruction (mine)
+
+- <https://adventofcode.com/>
+- [Nx Starter](https://nx.dev/advent-of-code)
+  - https://github.com/nrwl/ts-aoc-starter#running-the-puzzles
+
+```bash
+npx create-ts-aoc-starter
+```
+
 ## Getting Started
 
 ```terminal
