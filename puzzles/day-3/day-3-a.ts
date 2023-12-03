@@ -99,20 +99,14 @@ function numbersAdjacentToASymbol(
 */
 function parseLine(line: string, y: number) {
   console.log({ y, line });
-  // { line: 'Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green' }
   // find all numbers in the line, and their indexOf's
   const nRE = /\d+/g;
   const numbers = findAllRE(line, nRE, y);
   // find all symbols in the line, and their indexes
-
-  // RE which matces these symbols = # $ % & * + - / = @
+  // RE which matches these symbols = # $ % & * + - / = @
+  // NOTE: - must be at end!!!!!
   const sRE = /[#$%&*@+=/-]/g;
-  //   const sRE = /[#$%&*@+-/]/g;
-  // const sRE = /[#$*+]/g;
-  // const sRE = /[*#$+&%@-/=]/g;
   const symbols = findAllRE(line, sRE, y);
-  // const numbers = numbersAndSymbols.filter((ns) => ns.n !== undefined);
-  // const symbols = numbersAndSymbols.filter((ns) => ns.sym !== undefined);
   console.log({ numbers, symbols });
   return { numbers, symbols };
 }
@@ -126,6 +120,8 @@ function findAllRE(
   const matches = [];
   let match = re.exec(line);
   while (match !== null) {
+    // [ '467', index: 0, input: '467..114..', groups: undefined ],
+    // [ '*', index: 3, input: '...*......', groups: undefined ],
     const ss = {
       y,
       x0: match.index,
@@ -135,9 +131,6 @@ function findAllRE(
     matches.push(ss);
     match = re.exec(line);
   }
-  // [ '467', index: 0, input: '467..114..', groups: undefined ],
-  // [ '*', index: 3, input: '...*......', groups: undefined ],
-  //
   return matches;
 }
 const answer = await day3a();
