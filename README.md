@@ -10,6 +10,12 @@
 npx create-ts-aoc-starter
 ```
 
+## Log
+
+- Day 3:
+  - Part a: 01:30:00: 3 6930 2892 `**/*`: 6930-ish position
+  - Part b: 02:15:00: 3 9915 3113 `***/*` 3113-ish position
+
 ## Getting Started
 
 ```terminal
