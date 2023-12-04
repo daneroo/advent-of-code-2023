@@ -14,9 +14,12 @@ npx create-ts-aoc-starter
 
 [Live](https://adventofcode.com/2023/leaderboard/self)
 
-```txt
+Day 4, my best time yetL 48 minutes to sole both, but I did it a 15:10!
+
+````txt
       --------Part 1---------   --------Part 2---------
 Day       Time    Rank  Score       Time    Rank  Score
+  4   15:25:07   75622      0   15:58:37   64319      0
   3   01:30:24    9721      0   02:16:52    9833      0
   2   12:47:54   71605      0   13:24:20   69353      0
   1       >24h  150984      0       >24h  110303      0
@@ -26,7 +29,7 @@ Day       Time    Rank  Score       Time    Rank  Score
 
 ```terminal
 npx create-ts-aoc-starter
-```
+````
 
 This will create a new workspace in the current directory with the following structure:
 
