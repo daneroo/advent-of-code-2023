@@ -1,6 +1,7 @@
 import { readData } from '../../shared.ts';
 import chalk from 'chalk';
 
+const globalStart = +new Date();
 const sample = {
   seeds: [79, 14, 55, 13],
   seedToSoil: [
@@ -319,7 +320,7 @@ export async function day5b(dataPath?: string) {
   // console.log({ seeds });
   console.log(`num seeds: ${seeds.length}`);
 
-  const cache = true;
+  const cache = false;
   function seedToLocation(seed: number) {
     // console.log('--------', { seed });
     if (cache) {
@@ -370,12 +371,18 @@ export async function day5b(dataPath?: string) {
   while (seedsAndLengths.length > 1) {
     const seedStart = seedsAndLengths[0];
     const length = seedsAndLengths[1];
-    console.log('*******', { seedStart, length });
+    const elapsed = ((+new Date() - globalStart) / 1000).toFixed(2);
+    console.log('*******', { seedStart, length }, `(${elapsed}s)`);
     for (let seed = seedStart; seed < seedStart + length; seed++) {
       const location = seedToLocation(seed);
       if (location < minLocation) {
         minLocation = location;
-        console.log('++++new min', { seed, location, minLocation });
+        const elapsed = ((+new Date() - globalStart) / 1000).toFixed(2);
+        console.log(
+          '++++new min',
+          { seed, location, minLocation },
+          `(${elapsed}s)`
+        );
       }
       // console.log({ seed, location, minLocation });
     }
