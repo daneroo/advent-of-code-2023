@@ -19,6 +19,7 @@ Day 4, my best time yetL 48 minutes to sole both, but I did it a 15:10!
 ````txt
       --------Part 1---------   --------Part 2---------
 Day       Time    Rank  Score       Time    Rank  Score
+  8   00:14:07    3916      0   01:07:28    5383      0
   7   00:25:08    1617      0   02:09:16    8865      0
   6   00:25:07    8100      0   00:34:07    8030      0
   5   00:54:54    7069      0   01:35:49    3226      0
