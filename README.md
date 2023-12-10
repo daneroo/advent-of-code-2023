@@ -14,11 +14,14 @@ npx create-ts-aoc-starter
 
 [Live](https://adventofcode.com/2023/leaderboard/self)
 
-Day 4, my best time yetL 48 minutes to sole both, but I did it a 15:10!
+Day 4, my best time yet 48 minutes to sole both, but I did it at 15:10!
+Day 10 - started 11:37 took 47m to solve part 1, then 2h34 to solve both
 
 ````txt
       --------Part 1---------   --------Part 2---------
 Day       Time    Rank  Score       Time    Rank  Score
+ 10   12:24:21   31102      0   14:11:30   19055      0
+  9   00:24:37    4850      0   00:29:20    4381      0
   8   00:14:07    3916      0   01:07:28    5383      0
   7   00:25:08    1617      0   02:09:16    8865      0
   6   00:25:07    8100      0   00:34:07    8030      0
