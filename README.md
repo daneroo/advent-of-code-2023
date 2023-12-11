@@ -20,6 +20,7 @@ Day 10 - started 11:37 took 47m to solve part 1, then 2h34 to solve both
 ````txt
       --------Part 1---------   --------Part 2---------
 Day       Time    Rank  Score       Time    Rank  Score
+ 11   00:26:25    3234      0   00:30:48    2253      0
  10   12:24:21   31102      0   14:11:30   19055      0
   9   00:24:37    4850      0   00:29:20    4381      0
   8   00:14:07    3916      0   01:07:28    5383      0
