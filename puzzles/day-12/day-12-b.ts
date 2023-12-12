@@ -1,6 +1,12 @@
 import { readData } from '../../shared.ts';
 import chalk from 'chalk';
 
+// async function bunReadData(path) {
+//   const fileName = path || Bun.argv[2];
+//   const data = (await Bun.file(fileName).text()).split('\n');
+//   return data;
+// }
+
 // ???.### 1,1,3
 // .??..??...?##. 1,1,3
 // ?#?#?#?#?#?#?#? 1,3,1,6
