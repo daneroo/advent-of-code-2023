@@ -17,6 +17,7 @@ npx create-ts-aoc-starter
 Day 4, my best time yet 48 minutes to sole both, but I did it at 15:10!
 Day 10 - started 11:37 took 47m to solve part 1, then 2h34 to solve both
 Day 12 - Ouch, complete re-implementation to solve part 2, needed some help!!!
+Day 13 abandoned part 2 after 2.5 hours! - re-implement tomorrow
 
 ````txt
       --------Part 1---------   --------Part 2---------
