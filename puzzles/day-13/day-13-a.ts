@@ -78,7 +78,7 @@ function isSymmetricalVertically(lines: string[]) {
 
   //  candidates = [1, lines[0].length-2 ]
   let candidates = Array.from(
-    { length: lines.length - 2 },
+    { length: lines.length - 1 },
     (_, i) => i + 1
   ).filter((candidate) => {
     const length = Math.min(candidate, lines.length - candidate);
@@ -133,7 +133,7 @@ function isSymmetricalHorizontally2(lines: string[]) {
   }
   //  candidates = [1, lines[0].length-2 ]
   let candidates = Array.from(
-    { length: lines[0].length - 2 },
+    { length: lines[0].length - 1 },
     (_, i) => i + 1
   ).filter((candidate) => {
     const length = Math.min(candidate, lines[0].length - candidate);
