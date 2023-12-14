@@ -1,176 +1,68 @@
 import { readData } from '../../shared.ts';
 import chalk from 'chalk';
 
-// horizonetal symmetry around col 5|6
-// #.##..##.
-// ..#.##.#.
-// ##......#
-// ##......#
-// ..#.##.#.
-// ..##..##.
-// #.#.##.#.
-function isSymmetricalHorizontally(lines: string[]) {
-  // decide if the left and right sides are symmetrical around a column
-  // find the indices around which line[0] is symmetrical
-  // the remove those that are not symmetrical for line[1],...
+// restart implementation of part a, then part b
+// a-sample: 405
+// a: 28895
+// b-sample: 400
+// b: 31603
 
-  //  candidates = [1, lines[0].length-2 ]
-  let candidates = Array.from({ length: lines[0].length - 1 }, (_, i) => i + 1);
-  // console.log({ l: lines[0].length, candidates });
-  for (const line of lines) {
-    // test each remaining candidate
-    // if the left and right sides are not symmetrical around the candidate, remove it
-    // if there is only one candidate left, return true
-    // if there are no candidates left, return false
-    // if there are more than one candidate left, continue to the next line
-    const newCandidates = [];
-    for (const candidate of candidates) {
-      // split the line into left and right
-      // 0..candidate, candidate+1..line.length-1
-      // reverse the left side
-      const length = Math.min(candidate, line.length - candidate);
+// switch between part a and part b
+// which just means expected diffs in verticalSymmetry
+// will be 0 for part a and 1 for part b
+const partA = false;
 
-      let left = line
-        .slice(0, candidate)
-        .split('')
-        .reverse()
-        .join('')
-        .slice(0, length);
-      let right = line.slice(candidate).slice(0, length);
-      // console.log(
-      //   `== c:${candidate} l:${length} ${left === right ? 'true' : 'false'}`
-      // );
-      // console.log(`   line: ${line}`);
-      // console.log(`     ${line.slice(0, candidate)}|${line.slice(candidate)}`);
-      // console.log(`   left: ${left}`);
-      // console.log(`  right: ${right}`);
-
-      if (left === right) {
-        newCandidates.push(candidate);
-      }
+function diffLines(la: string, lb: string) {
+  let diff = 0;
+  for (let i = 0; i < la.length; i++) {
+    if (la[i] !== lb[i]) {
+      diff++;
     }
-    candidates = newCandidates;
   }
-  // console.log('symmetrical H', { candidates });
-  if (candidates.length > 1) {
-    console.log('symmetrical H', { candidates });
-    // throw new Error('too symmetrical H');
-    return 0; //candidates[0];
-  }
-
-  if (candidates.length != 1) {
-    // throw new Error('not symmetrical');
-    return 0;
-  }
-  return candidates[0];
-}
-// Vertical symmetry around row 4|5
-// #...##..#
-// #....#..#
-// ..##..###
-// #####.##.
-// #####.##.
-// ..##..###
-// #....#..#
-
-function isSymmetricalVertically(lines: string[]) {
-  // decide if the top and bottom lines are symmetrical around a row
-  // find the indices around which line[0] is symmetrical
-  // the remove those that are not symmetrical for line[1],...
-
-  //  candidates = [1, lines[0].length-2 ]
-  let candidates = Array.from(
-    { length: lines.length - 1 },
-    (_, i) => i + 1
-  ).filter((candidate) => {
-    const length = Math.min(candidate, lines.length - candidate);
-    // console.log(
-    //   `-- checking candidate ${candidate} length ${length} #lines ${lines.length}`
-    // );
-    const equalLines = [];
-    for (let r = 0; r < length; r++) {
-      // compare row row candidate-r and candidate+
-      // console.log(
-      //   `-- checking r:${r} : ${candidate - r - 1} and ${candidate + r}`
-      // );
-      if (lines[candidate - r - 1] !== lines[candidate + r]) {
-        return false;
-      } else {
-        equalLines.push([candidate - r - 1, candidate + r]);
-      }
-    }
-    // console.log({ candidate, length, equalLines });
-    return true;
-  });
-
-  // console.log('symmetrical V', { candidates });
-  if (candidates.length > 1) {
-    console.log('symmetrical V', { candidates });
-    // throw new Error('too symmetrical V');
-    return 0; //candidates[0];
-  }
-  if (candidates.length != 1) {
-    return 0;
-  }
-  return candidates[0];
+  return diff;
 }
 
-function isSymmetricalHorizontally2(lines: string[]) {
-  // decide if the top and bottom lines are symmetrical around a row
-  // find the indices around which line[0] is symmetrical
-  // the remove those that are not symmetrical for line[1],...
+//return the index around which we have row symmetry
+function verticalSymmetry(lines: string[]) {
+  // console.log(`r in: [1,${lines.length})`);
+  for (let r = 1; r < lines.length; r++) {
+    // we should compare the rows around r
+    // i.e. line 0..r-1 and r..lines.length-1
+    // but limit the length to the shortest of the two
+    // also the rows of th top should be reversed
+    // that way comparing top[] with bottom[] is really comparing
+    //   lines[r-1]==lines[r]
+    //   lines[r-2]==lines[r+1], ...
+    const length = Math.min(r, lines.length - r);
+    const top = lines.slice(0, r).reverse().slice(0, length);
+    const bottom = lines.slice(r).slice(0, length);
+    // print(f"-r: {r} top: {len(above)} bottom: {len(below)}")
+    // console.log(`+r: ${r}  top: ${top.length} bottom: ${bottom.length}`);
 
-  function equalCols(i, j) {
-    // console.log(`-- checking cols ${i} and ${j}`);
-    // for (let r = 0; r < lines.length; r++) {
-    //   console.log(`r:${r} ${lines[r][i]} ${lines[r][j]}`);
-    // }
-    for (let r = 0; r < lines.length; r++) {
-      // compare cols i and j
-      if (lines[r][i] !== lines[r][j]) {
-        return false;
-      } else {
-        // equalLines.push([candidate - r - 1, candidate + r]);
-      }
-    }
-    return true;
-  }
-  //  candidates = [1, lines[0].length-2 ]
-  let candidates = Array.from(
-    { length: lines[0].length - 1 },
-    (_, i) => i + 1
-  ).filter((candidate) => {
-    const length = Math.min(candidate, lines[0].length - candidate);
-    // console.log(
-    //   `-- checking candidate ${candidate} length ${length} #lines ${lines.length} cols ${lines[0].length}`
-    // );
-    for (let r = 0; r < length; r++) {
-      // compare cols candidate - r - 1 and candidate + r
-      if (!equalCols(candidate - r - 1, candidate + r)) {
-        return false;
-      } else {
-        // equalLines.push([candidate - r - 1, candidate + r]);
-      }
-    }
-    console.log({ candidate, length });
-    return true;
-  });
+    // compare the two halves - both of length r
+    // by summing the differences between the two halves/line by line
+    // if they are equal, we have a candidate - return r
+    const diffs = top
+      .map((tLine, i) => {
+        const bLine = bottom[i];
+        return diffLines(tLine, bLine);
+      })
+      .reduce((acc, cur) => acc + cur, 0);
 
-  console.log('symmetrical H', { candidates });
-  if (candidates.length > 1) {
-    throw new Error('too symmetrical H');
+    const expectedDiffs = partA ? 0 : 1;
+    if (diffs === expectedDiffs) {
+      // console.log(`found r: ${r} with ${diffs} diffs`);
+      return r;
+    }
   }
-  if (candidates.length != 1) {
-    return 0;
-  }
-  return candidates[0];
+  return 0;
 }
 
-function smudge(lines: string[], row: number, col: number) {
-  const newLines = lines.map((line) => line.split(''));
-  // flip the bit at row,col from # -> . or . -> #
-  newLines[row][col] = lines[row][col] === '#' ? '.' : '#';
-  return newLines.map((line) => line.join(''));
+function transpose(lines: string[]) {
+  return lines[0]
+    .split('')
+    .map((_, i) => lines.map((row) => row[i]))
+    .map((row) => row.join(''));
 }
 export async function day13b(dataPath?: string) {
   const data = await readData(dataPath);
@@ -180,56 +72,18 @@ export async function day13b(dataPath?: string) {
   return puzzles
     .map((puzzle: string, row) => {
       const lines = puzzle.split('\n');
-      console.log(
-        `--- \n  puzzle: ${row} cols: ${lines[0].length} rows: ${lines.length}`
-      );
+      // console.log(
+      //   `--- puzzle: ${row} cols: ${lines[0].length} rows: ${lines.length}`
+      // );
+      // console.log(lines.join('\n'));
+      const vert = verticalSymmetry(lines);
 
-      console.log(lines.join('\n'));
-      const horz = isSymmetricalHorizontally(lines);
-      // const horz2 = isSymmetricalHorizontally2(lines);
-      // if (horz !== horz2) {
-      //   throw new Error('horz not equal');
-      // }
-      const vert = isSymmetricalVertically(lines);
-      // if (horz === 0 && vert === 0) {
-      //   throw new Error('not symmetrical enough');
-      // }
-      console.log('orig', { horz, vert });
-      if (horz !== 0 && vert !== 0) {
-        throw new Error('doubly symmetrical HV');
-      }
+      // console.log(`--- transposed`);
+      const transposed = transpose(lines);
+      // console.log(transposed.join('\n'));
+      const horz = verticalSymmetry(transposed);
 
-      // return horz + 100 * vert;
-
-      for (let smudgeRow = 0; smudgeRow < lines.length; smudgeRow++) {
-        for (let smudgeCol = 0; smudgeCol < lines[0].length; smudgeCol++) {
-          const smudgedLines = smudge(lines, smudgeRow, smudgeCol);
-
-          const horzSmudge = isSymmetricalHorizontally(smudgedLines);
-          const vertSmudge = isSymmetricalVertically(smudgedLines);
-
-          if (horzSmudge !== 0 && vertSmudge !== 0) {
-            console.log(`puzzle:${row} smudge ${smudgeRow} ${smudgeCol} `);
-            console.log(smudgedLines.join('\n'));
-            console.log({ horzSmudge, vertSmudge });
-            continue;
-            // throw new Error('doubly symmetrical smudge HV');
-          }
-          if (horzSmudge !== 0 && horzSmudge !== horz) {
-            console.log(`puzzle:${row} smudge ${smudgeRow} ${smudgeCol} `);
-            console.log(smudgedLines.join('\n'));
-            console.log('h', { horzSmudge, vertSmudge });
-            return horzSmudge;
-          }
-          if (vertSmudge !== 0 && vertSmudge !== vert) {
-            console.log(`puzzle:${row} smudge ${smudgeRow} ${smudgeCol} `);
-            console.log(smudgedLines.join('\n'));
-            console.log('v', { horzSmudge, vertSmudge });
-            return 100 * vertSmudge;
-          }
-        }
-      }
-      return 0;
+      return vert * 100 + horz;
     })
     .reduce((acc, cur) => acc + cur, 0);
   // return 0;
