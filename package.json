@@ -107,7 +107,8 @@
   "private": true,
   "dependencies": {
     "chalk": "latest",
-    "ts-aoc-starter": "1.0.4"
+    "ts-aoc-starter": "1.0.4",
+    "typescript-collections": "^1.3.3"
   },
   "devDependencies": {
     "@nx/workspace": "17.1.3",
