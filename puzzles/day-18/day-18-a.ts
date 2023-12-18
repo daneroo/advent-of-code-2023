@@ -19,6 +19,8 @@ import chalk from 'chalk';
 
 type Vertex = { x: number; y: number };
 
+// Shoelace formula
+// https://en.wikipedia.org/wiki/Shoelace_formula
 function calculateArea(vertices: Vertex[]): number {
   let area = 0;
   for (let i = 0; i < vertices.length; i++) {
@@ -79,6 +81,7 @@ export async function day18a(dataPath?: string) {
 
   const A = calculateArea(vertices);
   const b = calculateTotalBoundaryLength(vertices);
+  // Pick's Theorem (I = A - B/2 + 1)
   const interiorPoints = A - b / 2 + 1;
   const totalPoints = interiorPoints + b;
 
