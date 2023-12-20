@@ -22,6 +22,7 @@ Day 13 abandoned part 2 after 2.5 hours! - re-implement tomorrow
 ````txt
       --------Part 1---------   --------Part 2---------
 Day       Time    Rank  Score       Time    Rank  Score
+ 20   01:42:02    3085      0   01:55:25    1457      0
  19   00:58:29    3916      0   02:31:23    3071      0
  18   01:26:58    4389      0   02:12:54    2805      0
  17   00:49:48    1266      0   00:52:17     953      0
