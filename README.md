@@ -1,4 +1,20 @@
-# ts-aoc-starter
+# Advent of Code - 2023
+
+My first attempt at _Advent of Code_.
+
+I checked out after day 20! I will try again next year.
+
+For next year, I will try a new runtime, maybe Deno, or maybe Python, we'll see.
+
+- The nx setup, although convenient was not optimal.
+- I would rather direct the input from the command line with stdin redirection instead of a fixed pattern of file names.
+- I have seen other repos also being able to get the puzzle input automatically.
+
+I like the pattern (probably an alias) of `aot` forsample input and `aoc` for the real input.
+
+## ts-aoc-starter
+
+For 2023 I used the [Nx Starter](https://nx.dev/advent-of-code) to get started.
 
 ## Instruction (mine)
 
